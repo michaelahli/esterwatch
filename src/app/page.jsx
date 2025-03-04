@@ -95,10 +95,10 @@ function MainComponent() {
                 Watches
               </a>
               <a
-                href="/service"
+                href="/contact"
                 className="hover:text-gray-900 dark:hover:text-white"
               >
-                Service
+                Contact
               </a>
               <a
                 href="/about"
@@ -349,37 +349,37 @@ function MainComponent() {
                 </li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4">
-                Service
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/service/repair"
-                    className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Watch Service
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/service/care"
-                    className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Watch Care
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/service/warranty"
-                    className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Warranty
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {/* <div> */}
+            {/*   <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4"> */}
+            {/*     Service */}
+            {/*   </h3> */}
+            {/*   <ul className="space-y-2"> */}
+            {/*     <li> */}
+            {/*       <a */}
+            {/*         href="/service/repair" */}
+            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
+            {/*       > */}
+            {/*         Watch Service */}
+            {/*       </a> */}
+            {/*     </li> */}
+            {/*     <li> */}
+            {/*       <a */}
+            {/*         href="/service/care" */}
+            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
+            {/*       > */}
+            {/*         Watch Care */}
+            {/*       </a> */}
+            {/*     </li> */}
+            {/*     <li> */}
+            {/*       <a */}
+            {/*         href="/service/warranty" */}
+            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
+            {/*       > */}
+            {/*         Warranty */}
+            {/*       </a> */}
+            {/*     </li> */}
+            {/*   </ul> */}
+            {/* </div> */}
             <div>
               <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4">
                 Contact
