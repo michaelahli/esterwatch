@@ -96,7 +96,7 @@ const Watches = () => {
                     Collection
                   </label>
                   <select
-                    className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700"
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 dark:text-white"
                     value={filters.collectionId}
                     onChange={(e) =>
                       setFilters((prev) => ({
@@ -133,7 +133,7 @@ const Watches = () => {
                       className="w-full"
                     />
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      Up to ${filters.maxPrice.toLocaleString()}
+                      Up to Rp {filters.maxPrice.toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ const Watches = () => {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
               <div className="flex items-center gap-4 mb-4 sm:mb-0">
                 <select
-                  className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700"
+                  className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 dark:text-white"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                 >
@@ -286,7 +286,7 @@ const Watches = () => {
                         Model: {watch.model_number}
                       </p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                        ${watch.price?.toLocaleString()}
+                        Rp {watch.price?.toLocaleString()}
                       </p>
 
                       <div className="space-y-2 mb-4">
@@ -312,7 +312,7 @@ const Watches = () => {
                         </a>
                         <button
                           onClick={() => setQuickViewWatch(watch)}
-                          className="border border-gray-300 dark:border-gray-600 px-4 py-2 rounded hover:bg-gray-50 dark:hover:bg-gray-700"
+                          className="border border-gray-300 dark:border-gray-600 px-4 py-2 rounded hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white"
                         >
                           Quick View
                         </button>
@@ -328,14 +328,14 @@ const Watches = () => {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50 dark:text-white"
                 >
                   Previous
                 </button>
                 <button
                   onClick={() => setPage((p) => p + 1)}
                   disabled={watches.length < 12}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50"
+                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50 dark:text-white"
                 >
                   Next
                 </button>
@@ -370,7 +370,7 @@ const Watches = () => {
                 </div>
                 <div>
                   <p className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    ${quickViewWatch.price?.toLocaleString()}
+                    Rp {quickViewWatch.price?.toLocaleString()}
                   </p>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
                     {quickViewWatch.description}
@@ -448,7 +448,7 @@ const Watches = () => {
                       {watch.name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      ${watch.price?.toLocaleString()}
+                      Rp {watch.price?.toLocaleString()}
                     </p>
                   </div>
                   <button

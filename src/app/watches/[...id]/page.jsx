@@ -66,6 +66,10 @@ const WatchModel = () => {
     fetchWatch();
   }, []);
 
+  const handleAsk = () => {
+    window.location.href = `https://wa.me/6285851040642/?text=Halo saya ingin menanyakan jam nomor ${watchId} apakah masih tersedia ?`;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
@@ -163,7 +167,7 @@ const WatchModel = () => {
               Model: {watch.model_number}
             </p>
             <p className="text-3xl font-inter font-bold text-gray-900 dark:text-white mb-8">
-              ${watch.price?.toLocaleString()}
+              Rp {watch.price?.toLocaleString()}
             </p>
 
             <div className="flex gap-4 mb-12">
@@ -173,12 +177,13 @@ const WatchModel = () => {
                   : "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                   }`}
                 disabled={!watch.in_stock}
+                onClick={handleAsk}
               >
-                {watch.in_stock ? "Add to Cart" : "Out of Stock"}
+                {watch.in_stock ? "Ask" : "Out of Stock"}
               </button>
-              <button className="flex-1 px-8 py-3 rounded font-inter border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900">
-                Book Appointment
-              </button>
+              {/* <button className="flex-1 px-8 py-3 rounded font-inter border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900"> */}
+              {/*   Book Appointment */}
+              {/* </button> */}
             </div>
 
             <div className="prose dark:prose-invert max-w-none mb-12">
@@ -257,7 +262,7 @@ const WatchModel = () => {
                   {relatedWatch.name}
                 </h3>
                 <p className="font-inter text-gray-600 dark:text-gray-400">
-                  ${relatedWatch.price?.toLocaleString()}
+                  Rp {relatedWatch.price?.toLocaleString()}
                 </p>
               </a>
             ))}

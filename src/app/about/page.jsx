@@ -16,7 +16,7 @@ function About() {
         <div className="relative h-full flex items-center justify-center text-center">
           <div className="max-w-4xl px-4">
             <h1 className="text-4xl md:text-6xl font-inter font-bold text-white mb-6">
-              Crafting Excellence Since 1875
+              Crafting Excellence Since 2025
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto font-inter">
               A legacy of precision, innovation, and timeless elegance
@@ -32,7 +32,7 @@ function About() {
               Our Heritage
             </h2>
             <p className="text-gray-700 dark:text-gray-300 font-inter mb-6">
-              Founded in 1875 in the heart of Switzerland, LUXWATCH began as a
+              Founded in 2025 in the heart of Indonesia, ESTER WATCH began as a
               small workshop dedicated to the art of watchmaking. Through
               generations of master craftsmen, we have maintained our commitment
               to excellence while embracing innovation.
@@ -42,10 +42,10 @@ function About() {
                 <div className="h-px w-12 bg-gray-300 dark:bg-gray-700 mt-4 mr-4"></div>
                 <div>
                   <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-2">
-                    1875
+                    2025
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 font-inter">
-                    Establishment of the first workshop
+                    Introduction of the brand
                   </p>
                 </div>
               </div>
@@ -53,10 +53,10 @@ function About() {
                 <div className="h-px w-12 bg-gray-300 dark:bg-gray-700 mt-4 mr-4"></div>
                 <div>
                   <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-2">
-                    1925
+                    2026
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 font-inter">
-                    Introduction of the first automatic movement
+                    Establishment of the first store
                   </p>
                 </div>
               </div>
@@ -64,7 +64,7 @@ function About() {
                 <div className="h-px w-12 bg-gray-300 dark:bg-gray-700 mt-4 mr-4"></div>
                 <div>
                   <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-2">
-                    1975
+                    2027
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 font-inter">
                     Launch of the iconic Precision series
@@ -211,14 +211,14 @@ function About() {
           <div>
             <img
               src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg"
-              alt="Swiss manufacturing facility"
+              alt="Indonesian manufacturing facility"
               className="rounded-lg mb-6"
             />
             <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4">
-              Swiss Workshop
+              Indonesian Workshop
             </h3>
             <p className="text-gray-700 dark:text-gray-300 font-inter">
-              State-of-the-art facilities in the heart of Switzerland
+              State-of-the-art facilities in the heart of Indonesia
             </p>
           </div>
           <div>

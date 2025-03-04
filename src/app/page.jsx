@@ -6,6 +6,7 @@ function MainComponent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const carouselRef = useRef(null);
 
   useEffect(() => {
@@ -30,9 +31,30 @@ function MainComponent() {
     fetchWatches();
   }, []);
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
-    setEmail("");
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message);
+        setError("");
+      } else {
+        setError(data.error);
+        setMessage("");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+      setMessage("");
+    }
   };
 
   if (loading) {
@@ -256,6 +278,7 @@ function MainComponent() {
                   Subscribe
                 </button>
               </form>
+              {message && <p style={{ color: "green" }} className="my-2">{message}</p>}
             </div>
           </div>
         </section>

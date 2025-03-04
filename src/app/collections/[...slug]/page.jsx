@@ -120,7 +120,7 @@ const CollectionDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pb-12">
       <div className="relative h-[500px] mb-12">
         <img
           src={collection.hero_image_url}
@@ -147,7 +147,7 @@ const CollectionDetails = () => {
           <div className="flex gap-4 flex-wrap">
             <select
               name="price-filter"
-              className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 font-inter"
+              className="bg-white dark:text-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 font-inter"
               value={filterPrice}
               onChange={(e) => setFilterPrice(e.target.value)}
             >
@@ -159,7 +159,7 @@ const CollectionDetails = () => {
             </select>
             <select
               name="stock-filter"
-              className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 font-inter"
+              className="bg-white dark:text-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 font-inter"
               value={filterInStock}
               onChange={(e) => setFilterInStock(e.target.value)}
             >
@@ -199,6 +199,9 @@ const CollectionDetails = () => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white font-inter mb-2">
                     {watch.name}
                   </h3>
+                  <p className="text-gray-600 dark:text-gray-300 font-inter mb-4 line-clamp-2">
+                    {watch.model_number}
+                  </p>
                   <p className="text-gray-600 dark:text-gray-300 font-inter mb-4 line-clamp-2">
                     {watch.description}
                   </p>
