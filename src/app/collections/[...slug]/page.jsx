@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
+import { useParams } from 'next/navigation';
 
 const CollectionDetails = () => {
   const [collection, setCollection] = useState(null);
@@ -9,7 +10,7 @@ const CollectionDetails = () => {
   const [filterPrice, setFilterPrice] = useState("all");
   const [filterInStock, setFilterInStock] = useState("all");
 
-  const slug = window.location.pathname.split("/").pop();
+  const slug = useParams()['slug'];
 
   useEffect(() => {
     async function fetchCollection() {
@@ -51,12 +52,12 @@ const CollectionDetails = () => {
     if (filterPrice !== "all") {
       const price = parseInt(watch.price);
       switch (filterPrice) {
-        case "under5000":
-          return price < 5000;
-        case "5000to10000":
-          return price >= 5000 && price <= 10000;
-        case "over10000":
-          return price > 10000;
+        case "under1000000":
+          return price < 1000000;
+        case "1000000to5000000":
+          return price >= 1000000 && price <= 5000000;
+        case "over5000000":
+          return price > 5000000;
         default:
           return true;
       }
@@ -151,9 +152,10 @@ const CollectionDetails = () => {
               onChange={(e) => setFilterPrice(e.target.value)}
             >
               <option value="all">All Prices</option>
-              <option value="under5000">Under $5,000</option>
-              <option value="5000to10000">$5,000 - $10,000</option>
-              <option value="over10000">Over $10,000</option>
+              <option value="under1000000">Under Rp 1.000.000</option>
+              <option value="1000000to5000000">Rp 1.000.000 - Rp 5.000.000</option>
+              <option value="over5000000">Over Rp 5.000.000</option>
+
             </select>
             <select
               name="stock-filter"
@@ -202,7 +204,7 @@ const CollectionDetails = () => {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900 dark:text-white font-inter">
-                      ${watch.price?.toLocaleString()}
+                      Rp {watch.price?.toLocaleString()}
                     </span>
                     <a
                       href={`/watches/${watch.id}`}

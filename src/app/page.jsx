@@ -13,6 +13,7 @@ function MainComponent() {
       try {
         const response = await fetch("/api/list-watches", {
           method: "POST",
+          body: JSON.stringify({}),
         });
         if (!response.ok) {
           throw new Error("Failed to fetch watches");
@@ -31,7 +32,6 @@ function MainComponent() {
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    // Newsletter signup logic would go here
     setEmail("");
   };
 

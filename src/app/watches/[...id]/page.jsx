@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
+import { useParams } from 'next/navigation';
 
 const WatchModel = () => {
   const [watch, setWatch] = useState(null);
@@ -8,7 +9,7 @@ const WatchModel = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedWatches, setRelatedWatches] = useState([]);
 
-  const watchId = window.location.pathname.split("/").pop();
+  const watchId = useParams()['id'];
 
   useEffect(() => {
     async function fetchWatch() {
@@ -25,6 +26,8 @@ const WatchModel = () => {
         });
 
         if (!response.ok) {
+          const data = await response.json();
+          console.error(data);
           throw new Error("Failed to fetch watch details");
         }
 
