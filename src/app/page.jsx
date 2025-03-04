@@ -57,7 +57,7 @@ function MainComponent() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="font-inter font-bold text-xl text-gray-900 dark:text-white">
-              LUXWATCH
+              ESTER WATCH
             </div>
             <div className="hidden md:flex space-x-8 font-inter text-gray-700 dark:text-gray-300">
               <a
@@ -391,7 +391,7 @@ function MainComponent() {
           </div>
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p className="text-center font-inter text-gray-700 dark:text-gray-300">
-              © 2025 LUXWATCH. All rights reserved.
+              © 2025 ESTER WATCH. All rights reserved.
             </p>
           </div>
         </div>
