@@ -12,9 +12,9 @@ export async function POST(req) {
       query += ' AND collection_id = $' + (params.length + 1);
       params.push(data.collection_id);
     }
-    if (data.price) {
+    if (data.max_price) {
       query += ' AND price <= $' + (params.length + 1);
-      params.push(data.price);
+      params.push(data.max_price);
     }
     if (data.in_stock !== undefined) {
       query += ' AND in_stock = $' + (params.length + 1);
