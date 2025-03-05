@@ -43,7 +43,7 @@ const WatchModel = () => {
         if (data.watch.collection_id) {
           const relatedResponse = await fetch("/api/list-watches", {
             method: "POST",
-            body: JSON.stringify({ collectionId: data.watch.collection_id }),
+            body: JSON.stringify({ collection_id: data.watch.collection_id }),
           });
 
           if (relatedResponse.ok) {

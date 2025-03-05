@@ -11,7 +11,7 @@ const Watches = () => {
   const [quickViewWatch, setQuickViewWatch] = useState(null);
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
-    collectionId: "",
+    collection_id: "",
     minPrice: 0,
     maxPrice: 100000,
     caseMaterial: [],
@@ -97,11 +97,11 @@ const Watches = () => {
                   </label>
                   <select
                     className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 dark:text-white"
-                    value={filters.collectionId}
+                    value={filters.collection_id}
                     onChange={(e) =>
                       setFilters((prev) => ({
                         ...prev,
-                        collectionId: e.target.value,
+                        collection_id: e.target.value,
                       }))
                     }
                   >
