@@ -12,8 +12,8 @@ const Watches = () => {
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
     collection_id: "",
-    minPrice: 0,
-    maxPrice: 100000,
+    min_price: 0,
+    max_price: 10000000,
     caseMaterial: [],
     movementType: [],
     waterResistance: [],
@@ -122,54 +122,54 @@ const Watches = () => {
                     <input
                       type="range"
                       min="0"
-                      max="100000"
-                      value={filters.maxPrice}
+                      max="10000000"
+                      value={filters.max_price}
                       onChange={(e) =>
                         setFilters((prev) => ({
                           ...prev,
-                          maxPrice: e.target.value,
+                          max_price: e.target.value,
                         }))
                       }
                       className="w-full"
                     />
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      Up to Rp {filters.maxPrice.toLocaleString()}
+                      Up to Rp {filters.max_price.toLocaleString()}
                     </span>
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Case Material
-                  </label>
-                  <div className="space-y-2">
-                    {["Stainless Steel", "Gold", "Platinum", "Titanium"].map(
-                      (material) => (
-                        <label key={material} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={filters.caseMaterial.includes(material)}
-                            onChange={(e) => {
-                              const newMaterials = e.target.checked
-                                ? [...filters.caseMaterial, material]
-                                : filters.caseMaterial.filter(
-                                  (m) => m !== material
-                                );
-                              setFilters((prev) => ({
-                                ...prev,
-                                caseMaterial: newMaterials,
-                              }));
-                            }}
-                            className="mr-2"
-                          />
-                          <span className="text-gray-700 dark:text-gray-300">
-                            {material}
-                          </span>
-                        </label>
-                      )
-                    )}
-                  </div>
-                </div>
+                {/* <div> */}
+                {/*   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"> */}
+                {/*     Case Material */}
+                {/*   </label> */}
+                {/*   <div className="space-y-2"> */}
+                {/*     {["Stainless Steel", "Gold", "Platinum", "Titanium"].map( */}
+                {/*       (material) => ( */}
+                {/*         <label key={material} className="flex items-center"> */}
+                {/*           <input */}
+                {/*             type="checkbox" */}
+                {/*             checked={filters.caseMaterial.includes(material)} */}
+                {/*             onChange={(e) => { */}
+                {/*               const newMaterials = e.target.checked */}
+                {/*                 ? [...filters.caseMaterial, material] */}
+                {/*                 : filters.caseMaterial.filter( */}
+                {/*                   (m) => m !== material */}
+                {/*                 ); */}
+                {/*               setFilters((prev) => ({ */}
+                {/*                 ...prev, */}
+                {/*                 caseMaterial: newMaterials, */}
+                {/*               })); */}
+                {/*             }} */}
+                {/*             className="mr-2" */}
+                {/*           /> */}
+                {/*           <span className="text-gray-700 dark:text-gray-300"> */}
+                {/*             {material} */}
+                {/*           </span> */}
+                {/*         </label> */}
+                {/*       ) */}
+                {/*     )} */}
+                {/*   </div> */}
+                {/* </div> */}
               </div>
             </div>
           </div>
@@ -345,125 +345,129 @@ const Watches = () => {
         </div>
       </div>
 
-      {quickViewWatch && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {quickViewWatch.name}
-                </h2>
-                <button
-                  onClick={() => setQuickViewWatch(null)}
-                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                >
-                  <i className="fas fa-times"></i>
-                </button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <img
-                    src={quickViewWatch.main_image_url}
-                    alt={quickViewWatch.name}
-                    className="w-full rounded-lg"
-                  />
-                </div>
-                <div>
-                  <p className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    Rp {quickViewWatch.price?.toLocaleString()}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {quickViewWatch.description}
-                  </p>
-                  <div className="space-y-2 mb-6">
-                    {quickViewWatch.specifications &&
-                      Object.entries(quickViewWatch.specifications).map(
-                        ([key, value]) => (
-                          <p
-                            key={key}
-                            className="text-sm text-gray-600 dark:text-gray-400"
-                          >
-                            {key}: {value}
-                          </p>
-                        )
-                      )}
-                  </div>
-                  <a
-                    href={`/watches/${quickViewWatch.id}`}
-                    className="block text-center bg-gray-900 dark:bg-gray-700 text-white px-6 py-2 rounded hover:bg-gray-800"
-                  >
-                    View Full Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {selectedWatches.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t border-gray-200 dark:border-gray-700 p-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <h3 className="font-bold text-gray-900 dark:text-white">
-                  Compare Watches
-                </h3>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {selectedWatches.length} of 3 selected
-                </span>
-              </div>
-              <div className="flex gap-4">
-                <button
-                  onClick={() => setSelectedWatches([])}
-                  className="text-red-600 hover:text-red-700"
-                >
-                  Clear All
-                </button>
-                {selectedWatches.length > 1 && (
+      {
+        quickViewWatch && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {quickViewWatch.name}
+                  </h2>
                   <button
-                    className="bg-gray-900 dark:bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
-                    onClick={() => {
-                      const params = new URLSearchParams(
-                        selectedWatches.map((w) => ["id", w.id])
-                      );
-                      window.location.href = `/compare?${params.toString()}`;
-                    }}
-                  >
-                    Compare Now
-                  </button>
-                )}
-              </div>
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-4">
-              {selectedWatches.map((watch) => (
-                <div key={watch.id} className="flex items-center gap-4">
-                  <img
-                    src={watch.main_image_url}
-                    alt={watch.name}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      {watch.name}
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Rp {watch.price?.toLocaleString()}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => toggleWatchComparison(watch)}
+                    onClick={() => setQuickViewWatch(null)}
                     className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                   >
                     <i className="fas fa-times"></i>
                   </button>
                 </div>
-              ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <img
+                      src={quickViewWatch.main_image_url}
+                      alt={quickViewWatch.name}
+                      className="w-full rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                      Rp {quickViewWatch.price?.toLocaleString()}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {quickViewWatch.description}
+                    </p>
+                    <div className="space-y-2 mb-6">
+                      {quickViewWatch.specifications &&
+                        Object.entries(quickViewWatch.specifications).map(
+                          ([key, value]) => (
+                            <p
+                              key={key}
+                              className="text-sm text-gray-600 dark:text-gray-400"
+                            >
+                              {key}: {value}
+                            </p>
+                          )
+                        )}
+                    </div>
+                    <a
+                      href={`/watches/${quickViewWatch.id}`}
+                      className="block text-center bg-gray-900 dark:bg-gray-700 text-white px-6 py-2 rounded hover:bg-gray-800"
+                    >
+                      View Full Details
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+
+      {
+        selectedWatches.length > 0 && (
+          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t border-gray-200 dark:border-gray-700 p-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <h3 className="font-bold text-gray-900 dark:text-white">
+                    Compare Watches
+                  </h3>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {selectedWatches.length} of 3 selected
+                  </span>
+                </div>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => setSelectedWatches([])}
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    Clear All
+                  </button>
+                  {selectedWatches.length > 1 && (
+                    <button
+                      className="bg-gray-900 dark:bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
+                      onClick={() => {
+                        const params = new URLSearchParams(
+                          selectedWatches.map((w) => ["id", w.id])
+                        );
+                        window.location.href = `/compare?${params.toString()}`;
+                      }}
+                    >
+                      Compare Now
+                    </button>
+                  )}
+                </div>
+              </div>
+              <div className="mt-4 grid grid-cols-3 gap-4">
+                {selectedWatches.map((watch) => (
+                  <div key={watch.id} className="flex items-center gap-4">
+                    <img
+                      src={watch.main_image_url}
+                      alt={watch.name}
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900 dark:text-white">
+                        {watch.name}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Rp {watch.price?.toLocaleString()}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => toggleWatchComparison(watch)}
+                      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    >
+                      <i className="fas fa-times"></i>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div >
   );
 }
 
