@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 function MainComponent() {
   const [watches, setWatches] = useState([]);
@@ -7,8 +8,8 @@ function MainComponent() {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const carouselRef = useRef(null);
 
+  // Fetch watches data
   useEffect(() => {
     async function fetchWatches() {
       try {
@@ -31,6 +32,7 @@ function MainComponent() {
     fetchWatches();
   }, []);
 
+  // Handle newsletter subscription
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -57,6 +59,7 @@ function MainComponent() {
     }
   };
 
+  // Loading state
   if (loading) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
@@ -65,6 +68,7 @@ function MainComponent() {
     );
   }
 
+  // Error state
   if (error) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
@@ -75,6 +79,7 @@ function MainComponent() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Header */}
       <header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -111,13 +116,17 @@ function MainComponent() {
         </nav>
       </header>
 
+      {/* Main Content */}
       <main className="pt-16">
+        {/* Hero Section */}
         <section className="relative h-[80vh] overflow-hidden">
           <div className="absolute inset-0">
-            <img
+            <Image
               src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg"
               alt="Luxury watch showcase"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority // Preload above-the-fold image
             />
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
@@ -139,6 +148,7 @@ function MainComponent() {
           </div>
         </section>
 
+        {/* Featured Timepieces */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-3xl font-inter font-bold text-gray-900 dark:text-white mb-8">
             Featured Timepieces
@@ -147,9 +157,11 @@ function MainComponent() {
             {watches.slice(0, 3).map((watch) => (
               <div key={watch.id} className="group">
                 <div className="aspect-square overflow-hidden rounded-lg mb-4">
-                  <img
+                  <Image
                     src={watch.main_image_url}
                     alt={watch.name}
+                    width={300}
+                    height={300}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -164,6 +176,7 @@ function MainComponent() {
           </div>
         </section>
 
+        {/* New Arrivals */}
         <section className="bg-gray-50 dark:bg-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <h2 className="text-3xl font-inter font-bold text-gray-900 dark:text-white mb-8">
@@ -173,9 +186,11 @@ function MainComponent() {
               {watches.slice(3, 7).map((watch) => (
                 <div key={watch.id} className="group">
                   <div className="aspect-square overflow-hidden rounded-lg mb-4">
-                    <img
+                    <Image
                       src={watch.main_image_url}
                       alt={watch.name}
+                      width={300}
+                      height={300}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
@@ -191,6 +206,7 @@ function MainComponent() {
           </div>
         </section>
 
+        {/* Our Heritage */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
@@ -198,10 +214,8 @@ function MainComponent() {
                 Our Heritage
               </h2>
               <p className="font-inter text-gray-700 dark:text-gray-300 mb-6">
-                Since 1875, we have been crafting exceptional timepieces that
-                combine traditional watchmaking with innovative technology. Each
-                watch is a masterpiece of precision and elegance, created by our
-                master craftsmen with meticulous attention to detail.
+                Since 2025, we have been selling exceptional timepieces that
+                combine traditional watchmaking with innovative technology.
               </p>
               <a
                 href="/about"
@@ -211,46 +225,18 @@ function MainComponent() {
               </a>
             </div>
             <div className="aspect-square rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="https://images.pexels.com/photos/9979684/pexels-photo-9979684.jpeg"
                 alt="Watchmaker at work"
+                width={600}
+                height={600}
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
         </section>
 
-        <section className="bg-gray-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h2 className="text-3xl font-inter font-bold mb-8">
-              Client Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <i className="fas fa-clock text-2xl mb-4"></i>
-                <h3 className="font-inter font-bold mb-2">Service & Repair</h3>
-                <p className="font-inter text-gray-300">
-                  Expert care for your timepiece
-                </p>
-              </div>
-              <div>
-                <i className="fas fa-gem text-2xl mb-4"></i>
-                <h3 className="font-inter font-bold mb-2">Watch Valuation</h3>
-                <p className="font-inter text-gray-300">
-                  Professional assessment services
-                </p>
-              </div>
-              <div>
-                <i className="fas fa-user-tie text-2xl mb-4"></i>
-                <h3 className="font-inter font-bold mb-2">Personal Shopping</h3>
-                <p className="font-inter text-gray-300">
-                  Tailored buying experience
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        {/* Newsletter Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
             <div className="max-w-2xl mx-auto text-center">
@@ -278,12 +264,17 @@ function MainComponent() {
                   Subscribe
                 </button>
               </form>
-              {message && <p style={{ color: "green" }} className="my-2">{message}</p>}
+              {message && (
+                <p style={{ color: "green" }} className="my-2">
+                  {message}
+                </p>
+              )}
             </div>
           </div>
         </section>
       </main>
 
+      {/* Footer */}
       <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -349,37 +340,6 @@ function MainComponent() {
                 </li>
               </ul>
             </div>
-            {/* <div> */}
-            {/*   <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4"> */}
-            {/*     Service */}
-            {/*   </h3> */}
-            {/*   <ul className="space-y-2"> */}
-            {/*     <li> */}
-            {/*       <a */}
-            {/*         href="/service/repair" */}
-            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
-            {/*       > */}
-            {/*         Watch Service */}
-            {/*       </a> */}
-            {/*     </li> */}
-            {/*     <li> */}
-            {/*       <a */}
-            {/*         href="/service/care" */}
-            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
-            {/*       > */}
-            {/*         Watch Care */}
-            {/*       </a> */}
-            {/*     </li> */}
-            {/*     <li> */}
-            {/*       <a */}
-            {/*         href="/service/warranty" */}
-            {/*         className="font-inter text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" */}
-            {/*       > */}
-            {/*         Warranty */}
-            {/*       </a> */}
-            {/*     </li> */}
-            {/*   </ul> */}
-            {/* </div> */}
             <div>
               <h3 className="font-inter font-bold text-gray-900 dark:text-white mb-4">
                 Contact
