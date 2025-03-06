@@ -116,6 +116,25 @@ const WatchModel = () => {
 
   const galleryImages = [watch.main_image_url, ...(watch.gallery_images || [])];
 
+  const isVideo = (url) => {
+    try {
+      const urlObj = new URL(url);
+
+      // Check in pathname first (standard cases)
+      if (/\.(mp4|webm|mov)$/i.test(urlObj.pathname)) return true;
+
+      // Check in query parameters (for MinIO and similar)
+      const params = new URLSearchParams(urlObj.search);
+      for (let value of params.values()) {
+        if (/\.(mp4|webm|mov)$/i.test(decodeURIComponent(value))) return true;
+      }
+
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -133,11 +152,18 @@ const WatchModel = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <div className="aspect-square overflow-hidden rounded-lg mb-4">
-              <img
-                src={galleryImages[selectedImage]}
-                alt={`${watch.name} - View ${selectedImage + 1}`}
-                className="w-full h-full object-cover"
-              />
+              {isVideo(galleryImages[selectedImage]) ? (
+                <video controls className="w-full h-full object-cover">
+                  <source src={galleryImages[selectedImage]} type={galleryImages[selectedImage].endsWith('.mov') ? "video/quicktime" : "video/mp4"} />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={galleryImages[selectedImage]}
+                  alt={`${watch.name} - View ${selectedImage + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
             <div className="grid grid-cols-4 gap-4">
               {galleryImages.map((image, index) => (
@@ -149,11 +175,20 @@ const WatchModel = () => {
                     : "border-transparent"
                     }`}
                 >
-                  <img
-                    src={image}
-                    alt={`${watch.name} thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="relative">
+                    {isVideo(image) ? (
+                      <>
+                        <video className="w-full h-full object-cover">
+                          <source src={image} type={image.endsWith('.mov') ? "video/quicktime" : "video/mp4"} />
+                        </video>
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                          <i className="fas fa-play text-white text-2xl"></i>
+                        </div>
+                      </>
+                    ) : (
+                      <img src={image} alt={`${watch.name} thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
